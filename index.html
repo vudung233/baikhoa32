@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thư viện ảnh tương tác</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 30px;
+    }
+    .gallery img {
+      width: 150px;
+      margin: 10px;
+      border: 3px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .gallery img:hover,
+    .gallery img:focus {
+      transform: scale(1.1);
+      border-color: #007bff;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📸 Thư viện ảnh tương tác</h1>
+  <p>Di chuột hoặc nhấn Tab để chọn hình. Nhấn Enter để xem thông báo.</p>
+
+  <div class="gallery">
+    <img src="https://picsum.photos/id/1015/200" alt="Ảnh phong cảnh 1" tabindex="0">
+    <img src="https://picsum.photos/id/1025/200" alt="Ảnh phong cảnh 2" tabindex="0">
+    <img src="https://picsum.photos/id/1035/200" alt="Ảnh phong cảnh 3" tabindex="0">
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('.gallery img');
+    images.forEach((img, index) => {
+      img.addEventListener('mouseover', () => {
+        console.log(`Chuột đang ở hình ${index + 1}`);
+      });
+
+      img.addEventListener('mouseleave', () => {
+        console.log(`Chuột rời hình ${index + 1}`);
+      });
+
+      img.addEventListener('focus', () => {
+        console.log(`Đang focus vào hình ${index + 1}`);
+      });
+
+      img.addEventListener('blur', () => {
+        console.log(`Rời focus khỏi hình ${index + 1}`);
+      });
+
+      img.addEventListener('click', () => {
+        alert(`Bạn đã chọn hình ${index + 1}`);
+      });
+      img.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          alert(`Bạn đã kích hoạt hình ${index + 1}`);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
